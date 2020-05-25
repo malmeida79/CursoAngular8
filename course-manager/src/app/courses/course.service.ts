@@ -5,8 +5,20 @@ import { Course } from './course';
     providedIn: 'root'
 })
 export class CourseService {
+
     retieveAll(): Course[] {
         return COURSES;
+    }
+
+    retrieveById(id: number): Course {
+        return COURSES.find((courseInteractor: Course) => courseInteractor.id === id);
+    }
+
+    save(course: Course): void {
+        if (course.id) {
+            const index = COURSES.findIndex((courseInteractor: Course) => courseInteractor.id === course.id);
+            COURSES[index] = course;
+        }
     }
 }
 
