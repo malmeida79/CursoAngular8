@@ -1,0 +1,49 @@
+
+	criando a aplicacao
+	
+	ng new course-manager  (nao para modo de rodas, css padrao)
+	
+	
+	instalar e importar o bootstrap em styles.css da raiz
+
+	npm install bootstrap --save
+	"node_modules/bootstrap/dist/css/bootstrap.min.css",
+	
+	instalar font-awesome e importar tb
+	
+	npm install font-awesome --save	
+	@import '../node_modules/font-awesome/css/font-awesome.min.css'
+	
+	iniciado o tratamento de rotas dentro do app.module
+
+	RouterModule.forRoot([
+	{
+		path: '', redirectTo: 'courses', pathMatch: 'full'
+	},
+	{
+		path: 'courses', component: CourseListComponent
+	}
+	
+	quando se esta trabalhando com rotas, o que vai ativar o componenente e a rota e nao mais o selector
+	entao removemos e o selector do component
+	
+	selector: 'app-course-list' e tambem sua chamada no app component <app-course-list></app-course-list>
+	e no lugar dessa chamada foi alterada para <router-outlet></router-outlet>
+	
+	usamos ActivatedRoute para recuperar dados da rota ativa (course-info.component.ts)
+	
+	alteramos agora a aplicacao para usar obsevable e trabalhar com um servidor node.js
+	
+	foi estartado o servvidor node:
+	
+	PS D:\PROJETOS\Angular8\CursoAngular8\servers\course-manager-server> npm install
+	npm notice created a lockfile as package-lock.json. You should commit this file.
+	npm WARN course-manager-server@1.0.0 No description
+	npm WARN course-manager-server@1.0.0 No repository field.
+
+	added 52 packages from 39 contributors and audited 52 packages in 1.936s
+	found 0 vulnerabilities
+
+	PS D:\PROJETOS\Angular8\CursoAngular8\servers\course-manager-server> node serve.js
+	Server Started!
+	
