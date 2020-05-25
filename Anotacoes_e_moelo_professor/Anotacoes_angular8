@@ -47,3 +47,4 @@
 	PS D:\PROJETOS\Angular8\CursoAngular8\servers\course-manager-server> node serve.js
 	Server Started!
 	
+	finalizando para produção: ng build --prod
