@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from './course';
+import { CourseService } from './course.service';
 
 @Component({
     selector: 'app-course-list',
@@ -7,31 +8,30 @@ import { Course } from './course';
 })
 export class CourseListComponent implements OnInit {
 
-    courses: Course[] = [];
+    filteredCourses: Course[] = [];
+
+    private courses: Course[] = [];
+    private filterBy: string;
+
+    constructor(private courseService: CourseService) {
+
+    }
 
     ngOnInit(): void {
-        this.courses = [
-            {
-                id: 1,
-                name: 'Angular: Forms',
-                imageUrl: 'assets/images/forms.png',
-                price: 99.99,
-                code: 'XPS-8796',
-                duration: 120,
-                rating: 4.5,
-                releaseDate: 'December, 2, 2019'
-            },
-            {
-                id: 1,
-                name: 'Angular: HTTP',
-                imageUrl: 'assets/images/http.png',
-                price: 45.99,
-                code: 'LKL-1094',
-                duration: 80,
-                rating: 4,
-                releaseDate: 'November, 4, 2019'
-            }
-        ];
+        this.courses = this.courseService.retieveAll();
+        this.filteredCourses = this.courses;
+    }
+
+    set filter(value: string) {
+        this.filterBy = value;
+
+        this.filteredCourses = this.courses.filter(
+            (course: Course) => course.name.toLocaleLowerCase().indexOf(this.filterBy.toLocaleLowerCase()) > -1
+        );
+    }
+
+    get filter() {
+        return this.filterBy;
     }
 
 }
